@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.gmail.b09302083.im_pubnub"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        def BOOLEAN = "boolean"
+        def TRUE = "true"
+        def FALSE = "false"
+        def QLOG = "QLOG"
+        def GA = "GA"
+        def RTW = "RTW"
+
+        debug {
+            buildConfigField BOOLEAN, GA, TRUE
+            buildConfigField BOOLEAN, QLOG, TRUE
+            buildConfigField BOOLEAN, RTW, FALSE
+        }
+        release {
+            buildConfigField BOOLEAN, GA, TRUE
+            buildConfigField BOOLEAN, QLOG, FALSE
+            buildConfigField BOOLEAN, RTW, FALSE
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+}
